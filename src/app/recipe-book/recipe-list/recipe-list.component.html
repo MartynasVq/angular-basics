@@ -1,0 +1,13 @@
+<div class="row mt-2">
+  <div class="col-12">
+    <div class="btn btn-success">
+      New Recipe
+    </div>
+  </div>
+</div>
+<div class="row h-auto">
+  <a *ngFor="let recipe of recipes" href="#" class="clearfix w-100" (click)="onRecipeSelect(recipe)">
+    <app-recipe-item [item]="recipe"></app-recipe-item>
+  </a>
+</div>
+

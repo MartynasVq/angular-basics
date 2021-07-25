@@ -1,0 +1,11 @@
+<div class="container bg-white m-2 rounded">
+  <div class="row align-items-center">
+    <div class="col-8">
+      <h4 class="list-group-item"> {{item?.name}} </h4>
+      <p class="list-group-item"> {{item?.description}} </p>
+    </div>
+    <div class="col-4 ">
+      <img [src]="item?.imagePath" class="img-fluid rounded-circle" style="max-height: 150px; max-width: 150px">
+    </div>
+  </div>
+</div>

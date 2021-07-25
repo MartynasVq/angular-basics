@@ -1,0 +1,11 @@
+<div class="row text-center">
+  <div class="col-8 offset-2">
+    <hr/>
+    <app-edit (add)="addToCart($event)"></app-edit>
+  <hr/>
+    <ul class="list-group">
+      <li [@in] (@in.done)="finished()"  *ngFor="let ingredient of ingredients" href="#" class="list-group-item" style="cursor: pointer"> {{ingredient.name}} ({{ingredient.amount}})
+      <button type="button" (click)="removeFromCart(ingredient)" class="btn btn-danger rounded-circle h-25 float-end fw-bolder">X</button></li>
+    </ul>
+  </div>
+</div>

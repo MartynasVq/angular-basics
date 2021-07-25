@@ -1,0 +1,12 @@
+p {
+  overflow-wrap: break-word;
+}
+
+.list-group-item {
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color:inherit;
+}

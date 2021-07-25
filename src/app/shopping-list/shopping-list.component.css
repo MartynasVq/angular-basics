@@ -1,0 +1,14 @@
+a, h4 {
+  background-color: inherit;
+}
+
+.list-group-item {
+  background-color: white;
+  border: none;
+}
+
+.list-group {
+  background-color: transparent;
+}
+
+

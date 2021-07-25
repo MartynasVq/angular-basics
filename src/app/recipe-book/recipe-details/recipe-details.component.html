@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-12">
+    <img [src]="recipeToDisplay?.imagePath" class="img-fluid rounded-circle m-2"/>
+  </div>
+</div>
+<div class="row bg-white m-2 rounded">
+  <div class="col-12">
+    <h1> {{recipeToDisplay?.name}} </h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="dropdown text-center">
+      <button class="btn btn-primary dropdown-toggle" appDropdown>Manage Recipe</button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#" (click)="addToCart()">To Shopping List</a></li>
+        <li><a class="dropdown-item" href="#">Edit Recipe</a></li>
+        <li><a class="dropdown-item" href="#">Delete Recipe</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row bg-white m-2 rounded">
+  <div class="col-12">
+    <h1>Description</h1>
+    <p> {{recipeToDisplay?.description}} </p>
+  </div>
+</div>
+<div class="row bg-white m-2 rounded">
+  <div class="col-12">
+    <h1 class="list-group mb-1 text-center">Ingredients</h1>
+    <ul>
+      <li class="list-group-item text-center" *ngFor="let ingredient of recipeToDisplay?.ingredients"> {{ingredient.name}} {{ingredient.amount}} </li>
+    </ul>
+  </div>
+</div>

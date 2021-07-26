@@ -13,6 +13,9 @@ import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import { DropdownDirective } from './dropdown.directive';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {RouterModule} from "@angular/router";
+import {AppRoutingModule} from "./app-routing.module";
+import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +27,15 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     RecipeDetailsComponent,
     RecipeItemComponent,
     EditComponent,
-    DropdownDirective
+    DropdownDirective,
+    RecipeEditComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

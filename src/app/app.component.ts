@@ -6,9 +6,4 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  features: string = "Recipes";
-
-  onNavigate($event: string) {
-    this.features = $event;
-  }
 }

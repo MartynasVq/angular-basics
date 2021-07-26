@@ -1,11 +1,10 @@
 <div class="container-fluid bg-secondary vh-100">
   <div class="row bg-primary">
-    <app-header (feature)="onNavigate($event)"></app-header>
+    <app-header></app-header>
   </div>
   <div class="row w-100">
     <div class="col-12">
-      <app-recipe-book *ngIf="features === 'Recipes'"></app-recipe-book>
-      <app-shopping-list *ngIf="features !== 'Recipes'"></app-shopping-list>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

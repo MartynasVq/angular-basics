@@ -1,13 +1,14 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import {Ingredient} from "../shared/ingredient.model";
 import {Recipe} from "../recipe-book/recipe.model";
+import {Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingService {
   ingredients: Ingredient[] = [];
-  recipeToCart = new EventEmitter<Ingredient[]>();
+  recipeToCart = new Subject<Ingredient[]>();
 
   constructor() { }
 
@@ -27,12 +28,12 @@ export class ShoppingService {
     if(!done) {
       this.ingredients.push(ingr);
     }
-    this.recipeToCart.emit(this.ingredients.slice());
+    this.recipeToCart.next(this.ingredients.slice());
   }
 
   removeIngredient(ingr: Ingredient) {
     this.ingredients.splice(this.ingredients.indexOf(ingr), 1);
-    this.recipeToCart.emit(this.ingredients.slice());
+    this.recipeToCart.next(this.ingredients.slice());
   }
 
   addIngredients(ingr: Recipe) {
@@ -49,6 +50,6 @@ export class ShoppingService {
         this.ingredients.push({...i});
       }
     });
-    this.recipeToCart.emit(this.ingredients.slice());
+    this.recipeToCart.next(this.ingredients.slice());
   }
 }

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Ingredient} from "../shared/ingredient.model";
 import {ShoppingService} from "./shopping.service";
 import {animate, keyframes, style, transition, trigger} from "@angular/animations";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-shopping-list',
@@ -50,14 +51,19 @@ import {animate, keyframes, style, transition, trigger} from "@angular/animation
     ]),
   ]
 })
-export class ShoppingListComponent implements OnInit {
+export class ShoppingListComponent implements OnInit, OnDestroy{
   ingredients: Ingredient[] = [];
+  private sub?: Subscription;
 
   constructor(private shoppingService: ShoppingService) { }
 
+  ngOnDestroy(): void {
+        this.sub!.unsubscribe();
+    }
+
   ngOnInit(): void {
     this.ingredients = this.shoppingService.getIngredients();
-    this.shoppingService.recipeToCart.subscribe(i => this.ingredients = i);
+    this.sub = this.shoppingService.recipeToCart.subscribe(i => this.ingredients = i);
   }
 
   addToCart(ingr: Ingredient) {

@@ -2,7 +2,7 @@
   <div class="row align-items-center">
     <div class="col-8">
       <h4 class="list-group-item"> {{item?.name}} </h4>
-      <p class="list-group-item"> {{item?.description}} </p>
+      <p class="list-group-item"> {{item?.description | shorten:50}} </p>
     </div>
     <div class="col-4 ">
       <img [src]="item?.imagePath" class="img-fluid rounded-circle" style="max-height: 150px; max-width: 150px">

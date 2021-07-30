@@ -13,10 +13,10 @@ import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DropdownDirective } from './dropdown.directive';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {RouterModule} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.component';
 import {ShortenPipe} from "./shorten.pipe";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -38,6 +38,7 @@ import {ShortenPipe} from "./shorten.pipe";
     FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     ReactiveFormsModule
   ],
   providers: [],

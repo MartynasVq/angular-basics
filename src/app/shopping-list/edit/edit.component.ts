@@ -9,6 +9,7 @@ import {Form, NgForm} from "@angular/forms";
 })
 export class EditComponent implements OnInit {
   @Output() add = new EventEmitter<Ingredient>();
+  msg: string;
 
   constructor() { }
 
@@ -16,8 +17,13 @@ export class EditComponent implements OnInit {
   }
 
   addNewIngredient(form: NgForm) {
+    this.msg = 'Success!';
     let formValues = form.value;
     this.add.emit(new Ingredient(formValues.name.trim(), formValues.amount));
+  }
+
+  onCloseCall() {
+    this.msg = undefined;
   }
 
 }

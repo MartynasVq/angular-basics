@@ -17,6 +17,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.component';
 import {ShortenPipe} from "./shorten.pipe";
 import {HttpClientModule} from "@angular/common/http";
+import { AlertComponent } from './shared/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {HttpClientModule} from "@angular/common/http";
     EditComponent,
     DropdownDirective,
     RecipeEditComponent,
-    ShortenPipe
+    ShortenPipe,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

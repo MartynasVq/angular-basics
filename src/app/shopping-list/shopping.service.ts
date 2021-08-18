@@ -4,18 +4,14 @@ import {Recipe} from "../recipe-book/recipe.model";
 import {Subject} from "rxjs";
 import {Store} from "@ngrx/store";
 import * as ShoppingListActions from "./shopping-list.actions";
+import {State} from "./shopping-list.reducer";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingService {
-  ingredients: Ingredient[] = [];
 
-  constructor(private store: Store<{ shoppingList: { ingredients: Ingredient[] } }>) { }
-
-  getIngredients() {
-    return this.ingredients.slice();
-  }
+  constructor(private store: Store<{ shoppingList: State }>) { }
 
   removeIngredient(ingr: Ingredient) {
     this.store.dispatch(new ShoppingListActions.DeleteIngredient(ingr));

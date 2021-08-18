@@ -2,7 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Ingredient} from "../shared/ingredient.model";
 import {ShoppingService} from "./shopping.service";
 import {animate, keyframes, style, transition, trigger} from "@angular/animations";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
+import {Store} from "@ngrx/store";
 
 @Component({
   selector: 'app-shopping-list',
@@ -51,23 +52,17 @@ import {Subscription} from "rxjs";
     ]),
   ]
 })
-export class ShoppingListComponent implements OnInit, OnDestroy{
-  ingredients: Ingredient[] = [];
-  private sub?: Subscription;
+export class ShoppingListComponent implements OnInit, OnDestroy {
+  ingredients: Observable<{ ingredients: Ingredient[] }>;
 
-  constructor(private shoppingService: ShoppingService) { }
-
-  ngOnDestroy(): void {
-        this.sub!.unsubscribe();
-    }
-
-  ngOnInit(): void {
-    this.ingredients = this.shoppingService.getIngredients();
-    this.sub = this.shoppingService.recipeToCart.subscribe(i => this.ingredients = i);
+  constructor(private shoppingService: ShoppingService, private store: Store<{ shoppingList: { ingredients: Ingredient[] } }>) {
   }
 
-  addToCart(ingr: Ingredient) {
-    this.shoppingService.addIngredient(ingr);
+  ngOnDestroy(): void {
+  }
+
+  ngOnInit(): void {
+    this.ingredients = this.store.select('shoppingList');
   }
 
   removeFromCart(ingr: Ingredient) {
@@ -75,7 +70,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy{
   }
 
   finished() {
-    console.log("animation done");
+
   }
 
 }

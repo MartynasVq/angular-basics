@@ -4,7 +4,7 @@ import {ShoppingService} from "./shopping.service";
 import {animate, keyframes, style, transition, trigger} from "@angular/animations";
 import {Observable, Subscription} from "rxjs";
 import {Store} from "@ngrx/store";
-import {State} from "./shopping-list.reducer";
+import * as fromApp from "../store/app.reducer";
 
 @Component({
   selector: 'app-shopping-list',
@@ -56,7 +56,7 @@ import {State} from "./shopping-list.reducer";
 export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients: Observable<{ ingredients: Ingredient[] }>;
 
-  constructor(private shoppingService: ShoppingService, private store: Store<{ shoppingList: State }>) {
+  constructor(private shoppingService: ShoppingService, private store: Store<fromApp.AppState>) {
   }
 
   ngOnDestroy(): void {

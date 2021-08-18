@@ -3,7 +3,7 @@ import {Ingredient} from "../../shared/ingredient.model";
 import {Form, NgForm} from "@angular/forms";
 import {Store} from "@ngrx/store";
 import * as ShoppingListActions from "../shopping-list.actions";
-import {State} from "../shopping-list.reducer";
+import * as fromApp from "../../store/app.reducer";
 
 @Component({
   selector: 'app-edit',
@@ -13,7 +13,7 @@ import {State} from "../shopping-list.reducer";
 export class EditComponent implements OnInit {
   msg: string;
 
-  constructor(private store: Store<{ shoppingList: State }>) { }
+  constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
   }

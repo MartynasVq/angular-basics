@@ -23,6 +23,8 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 import {StoreModule} from "@ngrx/store";
 import {appReducer} from "./store/app.reducer";
+import {EffectsModule} from "@ngrx/effects";
+import {AuthEffects} from "./auth/store/auth.effects";
 
 @NgModule({
   declarations: [
@@ -48,9 +50,8 @@ import {appReducer} from "./store/app.reducer";
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot(
-      appReducer
-    ),
+    StoreModule.forRoot(appReducer),
+    EffectsModule.forRoot([AuthEffects]),
     ReactiveFormsModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],

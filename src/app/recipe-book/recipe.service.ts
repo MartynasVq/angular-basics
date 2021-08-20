@@ -8,16 +8,6 @@ import {Subject} from "rxjs";
 })
 export class RecipeService {
   private recipes: Recipe[] = [];
-  // [
-  //   new Recipe(1, "TestRecipe", "Lorem Ipsumsaddddddddddddddddddddddddddddddddddddd", "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-  //     [new Ingredient("Apple", 5),
-  //               new Ingredient("Banana", 5),
-  //               new Ingredient("Orange", 5)]),
-  //   new Recipe(2, "TestRecipe", "Lorem Ipsumsaddddddddddddddddddddddddddddddddddddd", "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-  //     [new Ingredient("Apple", 5),
-  //               new Ingredient("Pineapple", 5),
-  //               new Ingredient("Lemon", 5)])
-  // ];
   recipeSelected = new Subject<Recipe>();
   recipeUpdate = new Subject<Recipe[]>();
   maxId: number;

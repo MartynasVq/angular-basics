@@ -72,14 +72,12 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.id == null) {
-      this.id = +this.recipeService.getNextId();
-    }
     let newRecipe = new Recipe(+this.id, this.recipeForm.value['name'], this.recipeForm.value['description'], this.recipeForm.value['imagePath'], this.recipeForm.value['ingredients']);
     if (this.editMode) {
-      this.recipeService.updateRecipe(this.id, newRecipe);
+      this.store.dispatch(new RecipeActions.UpdateRecipe({id: this.id, recipe: newRecipe}));
     } else {
-      this.recipeService.addRecipe(newRecipe);
+      this.store.dispatch(new RecipeActions.AddRecipe({name: this.recipeForm.value['name'], description: this.recipeForm.value['description'],
+        url: this.recipeForm.value['imagePath'], ingredients: this.recipeForm.value['ingredients']}));
     }
     this.router.navigate(['../'], {relativeTo: this.route});
   }

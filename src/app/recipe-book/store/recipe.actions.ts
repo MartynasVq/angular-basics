@@ -1,5 +1,6 @@
 import {Action} from "@ngrx/store";
 import {Recipe} from "../recipe.model";
+import {Ingredient} from "../../shared/ingredient.model";
 
 export const ADD_RECIPE = 'ADD_RECIPE';
 export const DELETE_RECIPE = 'DELETE_RECIPE';
@@ -11,7 +12,7 @@ export const SELECT_RECIPE = "SELECT_RECIPE";
 
 export class AddRecipe implements Action {
   readonly type = ADD_RECIPE;
-  constructor(public payload: { recipe: Recipe }) {
+  constructor(public payload: { name: string, description: string, url: string, ingredients: Ingredient[] }) {
   }
 }
 
@@ -43,7 +44,7 @@ export class SelectRecipe implements Action {
 
 export class UpdateRecipe implements Action {
   readonly type = UPDATE_RECIPE;
-  constructor(public payload: {recipe: Recipe}) {
+  constructor(public payload: {id: number, recipe: Recipe}) {
   }
 }
 

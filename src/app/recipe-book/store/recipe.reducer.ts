@@ -15,9 +15,21 @@ const initialState: State = {
 export function recipeReducer(state = initialState, action: RecipeActions.RecipeActions) {
   switch (action.type) {
     case RecipeActions.ADD_RECIPE:
+      let maxId: number;
+      state.recipes.forEach(r => {
+        if (maxId != null) {
+          if (maxId < +r.id) {
+            maxId = +r.id;
+          }
+        } else {
+          maxId = +r.id;
+        }
+      });
+      maxId += 1;
       let temp: Recipe[] = [...state.recipes];
-      temp.push(action.payload.recipe);
-      return {...state, recipes: temp, selectedRecipe: {...action.payload.recipe}};
+      let newRecipe = new Recipe(maxId, action.payload.name, action.payload.description, action.payload.url, action.payload.ingredients);
+      temp.push(newRecipe);
+      return {...state, recipes: temp, selectedRecipe: newRecipe};
 
     case RecipeActions.DELETE_RECIPE:
       return {...state, recipes: state.recipes.filter(r => {

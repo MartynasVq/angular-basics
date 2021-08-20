@@ -33,8 +33,6 @@ export class FetchRecipes implements Action {
 
 export class SaveRecipes implements Action {
   readonly type = SAVE_RECIPES;
-  constructor(public payload: {recipes: Recipe[]}) {
-  }
 }
 
 export class SelectRecipe implements Action {

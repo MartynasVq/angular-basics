@@ -34,7 +34,8 @@ export class AuthEffects {
           email: res.email,
           id: res.localId,
           token: res.idToken,
-          expiration: new Date(new Date().getTime() + +res.expiresIn * 1000)
+          expiration: new Date(new Date().getTime() + +res.expiresIn*1000),
+          redirect: true
         });
       }), catchError(error => {
         return of(new AuthActions.LoginFail({error: "Error ocurred"}));
@@ -45,10 +46,12 @@ export class AuthEffects {
   authSuccess = this.actions$.pipe(
     ofType(AuthActions.LOGIN),
     tap((action: AuthActions.Login) => {
-      let user = new UserModel(action.payload.email, action.payload.id, action.payload.token, new Date(new Date().getTime() + +action.payload.expiration * 1000));
+      let user = new UserModel(action.payload.email, action.payload.id, action.payload.token, new Date(+action.payload.expiration));
       localStorage.setItem('userData', JSON.stringify(user));
-      this.auth.setAutoLogout(+action.payload.expiration * 1000);
-      this.router.navigate(['/']);
+      this.auth.setAutoLogout((+action.payload.expiration - new Date().getTime()));
+      if(action.payload.redirect) {
+        this.router.navigate(['/']);
+      }
     })
   );
   @Effect({dispatch:false})
@@ -74,7 +77,7 @@ export class AuthEffects {
         return {type: 'DUMMY'};
       let user = new UserModel(str.email, str.id, str._token, new Date(str._tokenExp));
       if(user.token) {
-        return new AuthActions.Login({email: str.email, id: str.id, token: str._token, expiration: new Date(str._tokenExp)});
+        return new AuthActions.Login({email: str.email, id: str.id, token: str._token, expiration: new Date(str._tokenExp), redirect: false});
       }
       return {type: 'DUMMY'};
     })
@@ -92,7 +95,8 @@ export class AuthEffects {
           email: res.email,
           id: res.localId,
           token: res.idToken,
-          expiration: new Date(new Date().getTime() + +res.expiresIn * 1000)
+          expiration: new Date(new Date().getTime() + +res.expiresIn),
+          redirect: true
         });
       }), catchError(error => {
         return of(new AuthActions.LoginFail({error: "Error ocurred"}));
